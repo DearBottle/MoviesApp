@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/login_page"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+
+        <View
+            android:id="@+id/view_back"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:background="@mipmap/icon_login_background" />
+
+
+        <ImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/view_back"
+            android:background="@color/white"
+            android:paddingLeft="35dp"
+            android:paddingRight="35dp"
+            android:paddingTop="20dp">
+
+
+            <EditText
+                android:id="@+id/et_user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/gray_line"
+                android:hint="请输入账号"
+                android:imeOptions="actionNext"
+                android:paddingBottom="20dp"
+                android:paddingLeft="35dp"
+                android:singleLine="true"
+                android:textSize="17sp" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignLeft="@id/et_user_name"
+                android:layout_alignTop="@id/et_user_name"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="8dp"
+                android:src="@mipmap/icon_et_username" />
+
+            <EditText
+                android:id="@+id/et_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/et_user_name"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="@color/gray_line"
+                android:hint="请输入密码"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:paddingBottom="20dp"
+                android:paddingLeft="35dp"
+                android:singleLine="true"
+                android:textSize="17sp" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignLeft="@id/et_pwd"
+                android:layout_alignTop="@id/et_pwd"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="8dp"
+                android:src="@mipmap/icon_et_pwd" />
+
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/et_pwd"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorPrimary"
+                android:text="登        录"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_copyright_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text=""
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
