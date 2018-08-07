@@ -24,7 +24,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="3dp"
         android:text="游客10086"
-        android:textColor="@color/white"
+        android:textColor="@color/dx_white"
         android:textSize="18sp" />
 
     <LinearLayout
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="等级: LV10"
-            android:textColor="@color/white"
+            android:textColor="@color/dx_white"
             android:textSize="18sp" />
 
         <TextView
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="经验: 107"
-            android:textColor="@color/white"
+            android:textColor="@color/dx_white"
             android:textSize="18sp" />
     </LinearLayout>
 
@@ -59,8 +59,8 @@
         android:layout_below="@id/et_pwd"
         android:layout_margin="15dp"
         android:layout_marginTop="20dp"
-        android:background="@color/gray_line"
+        android:background="@color/dx_divider"
         android:text="注        销"
-        android:textColor="@color/gray_text"
+        android:textColor="@color/dxColorPrimary"
         android:textSize="17sp" />
 </RelativeLayout>

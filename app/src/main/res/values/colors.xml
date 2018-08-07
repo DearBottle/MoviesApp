@@ -1,15 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#03A9F5</color>
-    <color name="colorPrimaryDark">#03A9F5</color>
-    <color name="colorAccent">#03A9F5</color>
+    <color name="dxColorPrimary">#03A9F5</color>
+    <color name="dxColorPrimaryDark">#03A9F5</color>
+    <color name="dxColorAccent">#03A9F5</color>
 
-    <color name="white">#FFFFFF</color>
+    <color name="dx_text_primary">#d2232323</color>
+    <color name="dx_text_secondary">#767778</color>
+    <color name="dx_text_primary_inverse">#FFFFFF</color>
+    <color name="dx_text_secondary_inverse">#d0ffffff</color>
+    <color name="dx_text_primary_disable">#94212223</color>
+    <color name="dx_text_primary_inverse_disable">#95ffffff</color>
+    <color name="dx_text_secondary_disable">#94aeaeae</color>
+    <color name="dx_text_secondary_inverse_disable">#93aeaeae</color>
+    <color name="dx_text_color_hint">#cecece</color>
 
-    <color name="gray_text">#8492A6</color>
-    <color name="blacknum">#f30b0909</color>
-    <color name="gray_line">#D1DBE5</color>
-    <color name="tran">#0000</color>
+    <color name="dx_window_background">#ffffff</color>
+    <color name="dx_item_pressed">#30c6c6c6</color>
+    <color name="dx_item_darker_pressed">#1bffffff</color>
+    <color name="dx_ripple">#56505050</color>
+    <color name="dx_ripple_darker">#3cffffff</color>
 
+    <color name="dx_divider">#e5e5e5</color>
+    <color name="dx_divider_big">#f7f7f7</color>
+
+    <color name="dx_white">#FFFFFF</color>
+    <color name="dx_tran">#0000</color>
+
+    <color name="dx_black_alpha_144">#90000000</color>
+    <color name="dx_black_alpha_200">#CC000000</color>
+    <color name="dx_img_placeholder">#dfdfdf</color>
+
+    <!--常用字体颜色-->
+    <color name="dx_text_color_blue">#03A9F5</color>
+    <color name="dx_text_color_blue2">#566CE9</color>
+    <color name="dx_text_color_red">#FF4949</color>
+    <color name="dx_text_color_green">#3BAB40</color>
+    <color name="dx_text_color_yellow">#F9B839</color>
 
 </resources>

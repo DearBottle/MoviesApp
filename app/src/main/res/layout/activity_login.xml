@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/dx_white">
 
     <RelativeLayout
         android:id="@+id/login_page"
@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/view_back"
-            android:background="@color/white"
+            android:background="@color/dx_white"
             android:paddingLeft="35dp"
             android:paddingRight="35dp"
             android:paddingTop="20dp">
@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:backgroundTint="@color/gray_line"
+                android:backgroundTint="@color/dx_divider"
                 android:hint="请输入账号"
                 android:imeOptions="actionNext"
                 android:paddingBottom="20dp"
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/et_user_name"
                 android:layout_marginTop="15dp"
-                android:backgroundTint="@color/gray_line"
+                android:backgroundTint="@color/dx_divider"
                 android:hint="请输入密码"
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
@@ -88,9 +88,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/et_pwd"
                 android:layout_marginTop="20dp"
-                android:background="@color/colorPrimary"
+                android:background="@color/dxColorPrimary"
                 android:text="登        录"
-                android:textColor="@color/white"
+                android:textColor="@color/dx_white"
                 android:textSize="17sp" />
 
         </RelativeLayout>

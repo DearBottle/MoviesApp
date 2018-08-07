@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dx_font_huge">20dp</dimen>
+    <dimen name="dx_font_big">18dp</dimen>
+    <dimen name="dx_font_normal">16dp</dimen>
+    <dimen name="dx_font_small">14dp</dimen>
+    <dimen name="dx_font_tiny">12dp</dimen>
+
+    <dimen name="dx_spacing_huge">32dp</dimen>
+    <dimen name="dx_spacing_big">24dp</dimen>
+    <dimen name="dx_spacing_normal">16dp</dimen>
+    <dimen name="dx_spacing_small">10dp</dimen>
+    <dimen name="dx_spacing_tiny">4dp</dimen>
+
+    <!--导航抽屉宽度-->
+    <dimen name="dx_drawer_width">320dp</dimen>
+    <dimen name="dx_divider_width">0.5dp</dimen>
+    <dimen name="dx_divider_big_width">10dp</dimen>
+
+    <dimen name="dx_grid_expected_size">120dp</dimen>
+
+</resources>

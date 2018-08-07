@@ -38,7 +38,7 @@
         android:layout_alignTop="@id/progressBar"
         android:gravity="center"
         android:text="4"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/dxColorPrimary"
         android:textStyle="bold" />
 
 </RelativeLayout>

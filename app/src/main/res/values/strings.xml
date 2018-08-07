@@ -1,3 +1,11 @@
 <resources>
+    <string name="dx_now_loading">加载中...</string>
+    <string name="dx_app_name">Movies</string>
     <string name="app_name">Movies</string>
+    <string name="dx_loading_failed">加载失败...</string>
+    <string name="dx_no_network">网络异常</string>
+    <string name="dx_data_empty">数据为空</string>
+    <string name="title_activity_dx_photo_selector">DxPhotoSelectorActivity</string>
+
+    <string name="dx_cancel">取消</string>
 </resources>

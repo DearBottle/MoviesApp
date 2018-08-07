@@ -1,6 +1,6 @@
 package com.bottle.moviesapp.base;
 
-import android.app.Application;
+import android.support.multidex.MultiDexApplication;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,7 +9,7 @@ import java.util.Set;
  * Created by mengbaobao on 2018/7/28.
  */
 
-public class BaseApplication extends Application {
+public class BaseApplication extends MultiDexApplication {
 
     private static Set<BaseActivity> mActivitySet;
 
@@ -30,7 +30,7 @@ public class BaseApplication extends Application {
     }
 
     public static void logout() {
-       for (BaseActivity activity:mActivitySet){
+        for (BaseActivity activity : mActivitySet) {
             activity.finish();
         }
     }

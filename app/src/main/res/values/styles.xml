@@ -1,11 +1,38 @@
 <resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+
     </style>
+
+    <style name="DxNavigationButtonStyle" parent="Widget.AppCompat.Toolbar.Button.Navigation">
+        <item name="android:minWidth">?actionBarSize</item>
+    </style>
+
+    <style name="DxDivider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dx_divider_width</item>
+        <item name="android:background">@color/dx_divider</item>
+    </style>
+
+    <style name="DxDivider.Big">
+        <item name="android:layout_height">@dimen/dx_divider_big_width</item>
+        <item name="android:background">@color/dx_divider_big</item>
+    </style>
+
+    <style name="DxDivider.Vertical">
+        <item name="android:layout_width">@dimen/dx_divider_width</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+
+    <!--文本按钮-->
+    <style name="DxTextButton" parent="TextAppearance.AppCompat.Button">
+        <item name="android:textSize">@dimen/dx_font_normal</item>
+        <item name="android:textColor">@color/dx_text_primary_inverse</item>
+        <item name="android:padding">@dimen/dx_spacing_small</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@color/dxColorPrimary</item>
+    </style>
+
 
 </resources>

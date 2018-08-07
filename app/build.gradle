@@ -4,11 +4,12 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.bottle.moviesapp"
-        minSdkVersion 15
-        targetSdkVersion 27
+        minSdkVersion 16
+        targetSdkVersion 19
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -20,13 +21,31 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //recyclerView 封装
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
-    api 'com.android.support:recyclerview-v7:27.1.1'
+    api 'com.android.support:recyclerview-v7:27.0.2'
+    //rxjava
+    api 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    api 'io.reactivex.rxjava2:rxjava:2.1.12'
+    //rxlifecycle
+    api 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.1'
+    //RxPermission
+    api 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5'
+    //retrofit
+    api 'com.squareup.retrofit2:retrofit:2.4.0'
+    api 'com.squareup.retrofit2:converter-gson:2.4.0'
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    //okhttp3日志拦截器
+    api 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+    //glide
+    api 'com.github.bumptech.glide:glide:4.7.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+
+    //完整版引入
+    compile 'com.shuyu:GSYVideoPlayer:5.0.2'
+    //方法数太多
+    compile 'com.android.support:multidex:1.0.3'
 
 }

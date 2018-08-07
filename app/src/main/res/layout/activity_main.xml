@@ -8,7 +8,7 @@
         android:id="@+id/rl_title"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/colorPrimary">
+        android:background="@color/dxColorPrimary">
 
         <View
             android:layout_width="match_parent"
@@ -34,7 +34,7 @@
             android:layout_marginLeft="3dp"
             android:layout_toRightOf="@id/iv_search"
             android:background="@null"
-            android:textColor="@color/gray_text" />
+            android:textColor="@color/dx_text_secondary" />
 
     </RelativeLayout>
 
@@ -65,7 +65,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimary"
+        android:background="@color/dxColorPrimary"
         android:gravity="center_vertical">
 
         <TextView
@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="电影官网"
-            android:textColor="@color/white"
+            android:textColor="@color/dx_white"
             android:textSize="20sp" />
 
         <TextView
@@ -84,7 +84,7 @@
             android:layout_alignParentRight="true"
             android:padding="10dp"
             android:text="个人中心"
-            android:textColor="@color/white"
+            android:textColor="@color/dx_white"
             android:textSize="20sp" />
     </RelativeLayout>
 
