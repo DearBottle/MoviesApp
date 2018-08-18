@@ -7,12 +7,20 @@ import com.bottle.moviesapp.bean.UserBean;
  */
 
 public class Config {
-    public static String url = "http://123.56.189.39/";
+    //public static String url = "http://www.magicdy.com/";
+    public static String url = "http://video.xihaikeji.com/";
+    public static String videoDetail = url + "Movie/Details/";
+
+
     private static UserBean userBean;
     private static String userToken;
 
     public static void setUserBean(UserBean userBean) {
         Config.userBean = userBean;
+    }
+
+    public static UserBean getUserBean() {
+        return userBean;
     }
 
     public static void setUserToken(String userToken) {

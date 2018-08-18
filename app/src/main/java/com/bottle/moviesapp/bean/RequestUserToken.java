@@ -7,14 +7,16 @@ import android.annotation.SuppressLint;
  * Created by mengbaobao on 2017/10/30.
  */
 
-public class RequestUserToken {
+public class RequestUserToken extends BaseRequset{
     private String loginName;
     private String loginPassword;
+
 
     @SuppressLint({"MissingPermission", "HardwareIds"})
     public RequestUserToken(String loginName, String loginPassword) {
         this.loginName = loginName;
         this.loginPassword = loginPassword;
+
     }
 
     public String getLoginName() {

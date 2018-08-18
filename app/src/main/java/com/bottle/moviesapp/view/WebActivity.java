@@ -6,9 +6,11 @@ import android.webkit.WebViewClient;
 import com.bottle.moviesapp.R;
 import com.bottle.moviesapp.base.BaseActivity;
 
-public class OfficialActivity extends BaseActivity {
+public class WebActivity extends BaseActivity {
 
     private WebView webView;
+    public static String URL = "URL";
+    private String url;
 
     @Override
     protected int getResId() {
@@ -17,14 +19,15 @@ public class OfficialActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        url = getIntent().getStringExtra(URL);
         webView = findViewById(R.id.webview);
     }
 
     @Override
     protected void initData() {
-        webView.loadUrl("http://baidu.com");
+        webView.loadUrl(url);
         //覆盖WebView默认使用第三方或系统默认浏览器打开网页的行为，使网页用WebView打开
-        webView.setWebViewClient(new WebViewClient(){
+        webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);

@@ -1,5 +1,6 @@
 package com.bottle.moviesapp.view;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.bottle.moviesapp.R;
 import com.bottle.moviesapp.base.BaseActivity;
+import com.bottle.moviesapp.bean.BaseRequset;
 import com.bottle.moviesapp.bean.RequestUserToken;
 import com.bottle.moviesapp.bean.UserBean;
 import com.bottle.moviesapp.bean.UserTokenBean;
@@ -17,6 +19,7 @@ import com.bottle.moviesapp.net.AppApiManager;
 import com.bottle.moviesapp.net.Config;
 import com.bottle.moviesapp.net.DxResponse;
 import com.bottle.moviesapp.net.Request;
+import com.bottle.moviesapp.utils.PermissionUtil;
 import com.bottle.moviesapp.utils.TextUtil;
 import com.bottle.moviesapp.utils.ToastUtil;
 
@@ -34,10 +37,10 @@ public class LoginActivity extends BaseActivity {
     private Button btnLogin;
     private TextView tvCopyrightName;
     private String[] permissionArr = new String[]{
-          /*  Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE*/
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE
     };
-    //private PermissionUtil permissionUtil;
+    private PermissionUtil permissionUtil;
 
     @Override
     protected int getResId() {
@@ -55,20 +58,19 @@ public class LoginActivity extends BaseActivity {
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void initData() {
-        //mView.checkPermissionSuccess();
-        /*permissionUtil = new PermissionUtil(this, new PermissionUtil.RequsetPermissionsListener() {
+        permissionUtil = new PermissionUtil(this, new PermissionUtil.RequsetPermissionsListener() {
             @Override
             public void onSuccess() {
-                //mView.checkPermissionSuccess();
             }
-        });*/
+        });
+        permissionUtil.checkPermissions(permissionArr);
     }
 
 
     @Override
     protected void onResume() {
         super.onResume();
-        //permissionUtil.allOpen(permissionArr);
+
     }
 
     @Override
@@ -76,8 +78,8 @@ public class LoginActivity extends BaseActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startMain();
-                // login(etUserName.getText().toString(), etPwd.getText().toString());
+                //startMain();
+                login(etUserName.getText().toString(), etPwd.getText().toString());
             }
         });
     }
@@ -105,7 +107,7 @@ public class LoginActivity extends BaseActivity {
                         .flatMap(new Function<DxResponse<UserTokenBean>, Flowable<DxResponse<UserBean>>>() {
                             @Override
                             public Flowable<DxResponse<UserBean>> apply(DxResponse<UserTokenBean> userTokenBeanDxResponse) throws Exception {
-                                return AppApiManager.getInstance().getApi().rbac_user();
+                                return AppApiManager.getInstance().getApi().rbac_user(new BaseRequset());
                             }
                         }),
                 new ResourceSubscriber<DxResponse<UserBean>>() {
@@ -113,7 +115,6 @@ public class LoginActivity extends BaseActivity {
                     public void onNext(DxResponse<UserBean> userResponse) {
                         hideWaiting();
                         if (!userResponse.isSucc() || userResponse.getData() == null) {
-                            ToastUtil.showToast(LoginActivity.this, userResponse.getMessage());
                         } else {
                             Config.setUserBean(userResponse.getData());
                             loginSuccess();
@@ -136,7 +137,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void loginSuccess() {
-
+        startMain();
     }
 
 
@@ -152,6 +153,6 @@ public class LoginActivity extends BaseActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        // permissionUtil.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        permissionUtil.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }

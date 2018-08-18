@@ -39,7 +39,7 @@ public class ViedoActivity extends GSYBaseActivityDetail<GSYExo2PlayerView> {
     @Override
     protected void initData() {
         List<GSYVideoModel> urls = new ArrayList<>();
-        urls.add(new GSYVideoModel(moviesBean.getFilePath(), moviesBean.getTitle()));
+        urls.add(new GSYVideoModel(moviesBean.getPlayPath(), moviesBean.getTitle()));
         detailPlayer.setUp(urls, 0);
         //使用 exo 的 CacheDataSourceFactory 实现
         detailPlayer.setExoCache(true);

@@ -18,6 +18,8 @@ public class MoviesBean implements Serializable {
     private String filePath;
     private String title;
     private String mimeType;
+    private String sha256;
+    private String playPath;
 
     public MoviesBean() {
 
@@ -74,6 +76,14 @@ public class MoviesBean implements Serializable {
         return size;
     }
 
+    public String getSha256() {
+        return sha256;
+    }
+
+    public void setSha256(String sha256) {
+        this.sha256 = sha256;
+    }
+
     private long getTime(String filePath) {
         MediaPlayer player = new MediaPlayer();
         try {
@@ -104,4 +114,11 @@ public class MoviesBean implements Serializable {
         return size;
     }
 
+    public String getPlayPath() {
+        return playPath;
+    }
+
+    public void setPlayPath(String playPath) {
+        this.playPath = playPath;
+    }
 }

@@ -6,32 +6,12 @@ package com.bottle.moviesapp.bean;
  */
 
 public class UserBean {
+
     private int id;
     private String loginName;
     private String name;
-    private String linkTel;
-    private String linkPhone;
-
-
-    public String getLinkTel() {
-        return linkTel;
-    }
-
-    public void setLinkTel(String linkTel) {
-        this.linkTel = linkTel;
-    }
-
-    public String getLinkPhone() {
-        return linkPhone;
-    }
-
-    public void setLinkPhone(String linkPhone) {
-        this.linkPhone = linkPhone;
-    }
-
-    public UserBean(int id) {
-        this.id = id;
-    }
+    private String level;
+    private int exp;
 
     public int getId() {
         return id;
@@ -57,13 +37,19 @@ public class UserBean {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "UserBean{" +
-                "id=" + id +
-                ", loginName='" + loginName + '\'' +
-                ", name='" + name + '\'' +
-                '}';
+    public String getLevel() {
+        return level;
     }
 
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
+    public int getExp() {
+        return exp;
+    }
+
+    public void setExp(int exp) {
+        this.exp = exp;
+    }
 }

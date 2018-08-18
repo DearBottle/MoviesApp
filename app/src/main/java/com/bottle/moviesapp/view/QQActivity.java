@@ -28,7 +28,7 @@ public class QQActivity extends BaseActivity {
     protected void initData() {
         //判断并启动QQ
         webView.getSettings().setJavaScriptEnabled(true);
-        String url = "http://wpa.qq.com/msgrd?v=3&uin=1075158766&site=qq&menu=yes";
+        String url ="http://wpa.qq.com/msgrd?v=3&uin=3389923020&site=qq&menu=yes";
         webView.loadUrl(url);
         webView.setWebViewClient(new WebViewClient() {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {

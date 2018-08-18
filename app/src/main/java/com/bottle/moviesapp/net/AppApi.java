@@ -1,14 +1,17 @@
 package com.bottle.moviesapp.net;
 
 
-
+import com.bottle.moviesapp.bean.ApplyPermissionBean;
+import com.bottle.moviesapp.bean.BaseRequset;
+import com.bottle.moviesapp.bean.PayBean;
+import com.bottle.moviesapp.bean.PermissionBean;
 import com.bottle.moviesapp.bean.RequestUserToken;
+import com.bottle.moviesapp.bean.RequsetPermission;
 import com.bottle.moviesapp.bean.UserBean;
 import com.bottle.moviesapp.bean.UserTokenBean;
 
 import io.reactivex.Flowable;
 import retrofit2.http.Body;
-import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 /**
@@ -18,12 +21,25 @@ import retrofit2.http.POST;
 public interface AppApi {
 
     //登录
-    @POST("dxbase/login")
+    @POST("Login/Index")
     Flowable<DxResponse<UserTokenBean>> login(@Body RequestUserToken requestToken);
 
     //获取用户信息
-    @GET("dxbase/rbac/user/get")
-    Flowable<DxResponse<UserBean>> rbac_user();
+    @POST("user/get")
+    Flowable<DxResponse<UserBean>> rbac_user(@Body BaseRequset requset);
+
+    //验证用户是否已经购买
+    @POST("pay/check")
+    Flowable<DxResponse<PayBean>> checkPay(@Body RequsetPermission requsetPermission);
+
+    //验证用户是否已经授权
+    @POST("permission/check")
+    Flowable<DxResponse<PermissionBean>> checkPermission(@Body RequsetPermission requsetPermission);
+
+    //用户授权
+    @POST("permission/apply")
+    Flowable<DxResponse<ApplyPermissionBean>> applyPermission(@Body RequsetPermission requsetPermission);
+
 
   /*  //修改密码
     @PUT("dxbase/rbac/user/changePassword")
