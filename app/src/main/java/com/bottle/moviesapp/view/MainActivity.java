@@ -55,6 +55,7 @@ public class MainActivity extends BaseActivity {
     private ArrayList<MoviesBean> videoRowsAll;
     private ArrayList<MoviesBean> videoRows;
     private EditText et_search;
+    private boolean testPlay = false;
 
 
     @Override
@@ -121,10 +122,14 @@ public class MainActivity extends BaseActivity {
         moviesAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                CProgressDialogUtils.showProgressDialog(MainActivity.this, "正在校验视频文件");
-                getSHA256(videoRows.get(position));
-                CProgressDialogUtils.cancelProgressDialog();
-                checkHasPay(videoRows.get(position));
+                if (testPlay) {
+                    play(videoRows.get(position));
+                } else {
+                    CProgressDialogUtils.showProgressDialog(MainActivity.this, "正在校验视频文件");
+                    getSHA256(videoRows.get(position));
+                    CProgressDialogUtils.cancelProgressDialog();
+                    checkHasPay(videoRows.get(position));
+                }
             }
         });
         et_search.addTextChangedListener(new TextWatcher() {
@@ -328,14 +333,7 @@ public class MainActivity extends BaseActivity {
                             permissionAllow(moviesBean);
                             return;
                         }
-                        if (!TextUtil.isValidate(moviesBean.getPlayPath())) {
-                            moviesBean.setPlayPath(VideoFormat.encryptToCache(MainActivity.this, moviesBean.getFilePath()));
-                        }
-                        if (TextUtil.isValidate(moviesBean.getPlayPath())) {
-                            Intent intent = new Intent(MainActivity.this, ViedoActivity.class);
-                            intent.putExtra("data", moviesBean);
-                            startActivity(intent);
-                        }
+                        play(moviesBean);
                     }
 
                     @Override
@@ -395,11 +393,7 @@ public class MainActivity extends BaseActivity {
                             ToastUtil.showToast(MainActivity.this, "授权失败");
                             return;
                         }
-                        if (TextUtil.isValidate(moviesBean.getPlayPath())) {
-                            Intent intent = new Intent(MainActivity.this, ViedoActivity.class);
-                            intent.putExtra("data", moviesBean);
-                            startActivity(intent);
-                        }
+                        play(moviesBean);
                     }
 
                     @Override
@@ -414,6 +408,17 @@ public class MainActivity extends BaseActivity {
                 }
         );
 
+    }
+
+    private void play(MoviesBean moviesBean) {
+        if (!TextUtil.isValidate(moviesBean.getPlayPath())) {
+            moviesBean.setPlayPath(VideoFormat.encryptToCache(MainActivity.this, moviesBean.getFilePath()));
+        }
+        if (TextUtil.isValidate(moviesBean.getPlayPath())) {
+            Intent intent = new Intent(MainActivity.this, ViedoActivity.class);
+            intent.putExtra("data", moviesBean);
+            startActivity(intent);
+        }
     }
 
 }
