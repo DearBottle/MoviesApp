@@ -1,9 +1,12 @@
 package com.bottle.moviesapp.view;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -40,7 +43,6 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.security.MessageDigest;
 import java.util.ArrayList;
-import java.util.List;
 
 import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subscribers.ResourceSubscriber;
@@ -55,7 +57,8 @@ public class MainActivity extends BaseActivity {
     private ArrayList<MoviesBean> videoRowsAll;
     private ArrayList<MoviesBean> videoRows;
     private EditText et_search;
-    private boolean testPlay = false;
+    private boolean testPlay = true;
+    private ImageView ivRefresh;
 
 
     @Override
@@ -70,6 +73,7 @@ public class MainActivity extends BaseActivity {
         tvPersonCenter = findViewById(R.id.tv_person_center);
         tvOfficial = findViewById(R.id.tv_official);
         et_search = findViewById(R.id.et_search);
+        ivRefresh = findViewById(R.id.iv_refresh);
     }
 
     @Override
@@ -79,22 +83,14 @@ public class MainActivity extends BaseActivity {
         moviesAdapter = new MoviesAdapter();
         mRecyclerView.setAdapter(moviesAdapter);
         videoRowsAll = new ArrayList<>();
-        List<MoviesBean> moviesBeans = getMovies();
-        moviesAdapter.addData(moviesBeans);
-        /*new Thread(new Runnable() {
-            @Override
-            public void run() {
-                getMovies2();
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        videoRows = videoRowsAll;
-                        //List<MoviesBean> moviesBeans = getMovies();
-                        moviesAdapter.addData(videoRows);
-                    }
-                });
-            }
-        }).start();*/
+
+        //List<MoviesBean> moviesBeans = getMovies();
+        //moviesAdapter.setNewData(moviesBeans);
+
+        getMovies2(new File(Environment.getExternalStorageDirectory(), "BaiduNetdisk"));
+        videoRows = videoRowsAll;
+        moviesAdapter.setNewData(videoRows);
+
     }
 
     @Override
@@ -102,7 +98,9 @@ public class MainActivity extends BaseActivity {
         ivQq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, QQActivity.class));
+                // startActivity(new Intent(MainActivity.this, QQActivity.class));
+                String url="mqqwpa://im/chat?chat_type=wpa&uin=3389923020";
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
             }
         });
         tvPersonCenter.setOnClickListener(new View.OnClickListener() {
@@ -114,12 +112,19 @@ public class MainActivity extends BaseActivity {
         tvOfficial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, WebActivity.class);
-                intent.putExtra(WebActivity.URL, Config.url);
+                Uri uri = Uri.parse(Config.url);
+                Intent intent = new Intent();
+                intent.setAction("android.intent.action.VIEW");
+                intent.setData(uri);
                 startActivity(intent);
+               /* Intent intent = new Intent(MainActivity.this, WebActivity.class);
+                intent.putExtra(WebActivity.URL, Config.url);
+                startActivity(intent);*/
             }
         });
-        moviesAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+        moviesAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener()
+
+        {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 if (testPlay) {
@@ -157,6 +162,12 @@ public class MainActivity extends BaseActivity {
                 }
                 moviesAdapter.setNewData(videoRows);
                 moviesAdapter.notifyDataSetChanged();
+            }
+        });
+        ivRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                initData();
             }
         });
     }
@@ -209,9 +220,16 @@ public class MainActivity extends BaseActivity {
     /**
      * //搜索目录，扩展名，是否进入子文件夹
      */
-    public void getMovies2() {
+
+    public void getMovies2(File file) {
         String Extension = "magic";
-        File[] files = Environment.getExternalStorageDirectory().listFiles();
+        if (!file.exists()) {
+            return;
+        }
+        File[] files = file.listFiles();
+        if (files == null) {
+            return;
+        }
         for (int i = 0; i < files.length; i++) {
             File f = files[i];
             if (f.isFile()) {
@@ -223,7 +241,7 @@ public class MainActivity extends BaseActivity {
                     videoRowsAll.add(moviesBean);
                 }
             } else if (f.isDirectory() && f.getPath().indexOf("/.") == -1) {
-                getMovies2();
+                getMovies2(f);
             }
         }
     }
@@ -414,11 +432,30 @@ public class MainActivity extends BaseActivity {
         if (!TextUtil.isValidate(moviesBean.getPlayPath())) {
             moviesBean.setPlayPath(VideoFormat.encryptToCache(MainActivity.this, moviesBean.getFilePath()));
         }
+        if (!isHeadSetOn()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setTitle("提示");
+            builder.setMessage("请先插入耳机");
+
+            builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                }
+            });
+            return;
+        }
         if (TextUtil.isValidate(moviesBean.getPlayPath())) {
             Intent intent = new Intent(MainActivity.this, ViedoActivity.class);
             intent.putExtra("data", moviesBean);
             startActivity(intent);
         }
+    }
+
+    private boolean isHeadSetOn() {
+        AudioManager localAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        boolean isHeadSetOn = localAudioManager.isWiredHeadsetOn();
+        return isHeadSetOn;
     }
 
 }

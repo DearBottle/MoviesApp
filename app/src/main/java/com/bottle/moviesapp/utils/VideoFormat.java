@@ -22,7 +22,7 @@ public class VideoFormat {
 
     public static String encryptToCache(Context context, String strFile) {
         try {
-            File newfile = new File(getDiskCachePath(context), strFile.substring(strFile.lastIndexOf("/") + 1));
+            File newfile = new File(getDiskCachePath(context), strFile.substring(strFile.lastIndexOf("/") + 1).replace("magic", "mp4"));
             if (newfile.exists()) {
                 newfile.delete();
                 //return newfile.getAbsolutePath();

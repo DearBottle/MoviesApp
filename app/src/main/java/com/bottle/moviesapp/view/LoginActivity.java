@@ -6,6 +6,7 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -20,6 +21,7 @@ import com.bottle.moviesapp.net.Config;
 import com.bottle.moviesapp.net.DxResponse;
 import com.bottle.moviesapp.net.Request;
 import com.bottle.moviesapp.utils.PermissionUtil;
+import com.bottle.moviesapp.utils.PreferenceUtil;
 import com.bottle.moviesapp.utils.TextUtil;
 import com.bottle.moviesapp.utils.ToastUtil;
 
@@ -35,6 +37,7 @@ public class LoginActivity extends BaseActivity {
     private EditText etUserName;
     private EditText etPwd;
     private Button btnLogin;
+    private CheckBox cbRember;
     private TextView tvCopyrightName;
     private String[] permissionArr = new String[]{
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -53,11 +56,15 @@ public class LoginActivity extends BaseActivity {
         etPwd = findViewById(R.id.et_pwd);
         btnLogin = findViewById(R.id.btn_login);
         tvCopyrightName = findViewById(R.id.tv_copyright_name);
+        cbRember = findViewById(R.id.cb_rember);
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void initData() {
+        etUserName.setText(PreferenceUtil.getString("UserName", ""));
+        etPwd.setText(PreferenceUtil.getString("PassWord", ""));
         permissionUtil = new PermissionUtil(this, new PermissionUtil.RequsetPermissionsListener() {
             @Override
             public void onSuccess() {
@@ -137,6 +144,13 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void loginSuccess() {
+        if (cbRember.isChecked()) {
+            PreferenceUtil.putString("UserName", etUserName.getText().toString());
+            PreferenceUtil.putString("PassWord", etPwd.getText().toString());
+        } else {
+            PreferenceUtil.putString("UserName", "");
+            PreferenceUtil.putString("PassWord", "");
+        }
         startMain();
     }
 

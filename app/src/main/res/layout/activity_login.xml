@@ -82,11 +82,19 @@
                 android:layout_marginTop="8dp"
                 android:src="@mipmap/icon_et_pwd" />
 
+            <CheckBox
+                android:id="@+id/cb_rember"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/et_pwd"
+                android:checked="true"
+                android:text="记住账号" />
+
             <Button
                 android:id="@+id/btn_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/et_pwd"
+                android:layout_below="@id/cb_rember"
                 android:layout_marginTop="20dp"
                 android:background="@color/dxColorPrimary"
                 android:text="登        录"
