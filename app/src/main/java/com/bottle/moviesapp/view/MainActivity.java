@@ -91,6 +91,21 @@ public class MainActivity extends BaseActivity {
         videoRows = videoRowsAll;
         moviesAdapter.setNewData(videoRows);
 
+        moviesAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener()
+
+        {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                if (testPlay) {
+                    play(videoRows.get(position));
+                } else {
+                    CProgressDialogUtils.showProgressDialog(MainActivity.this, "正在校验视频文件");
+                    getSHA256(videoRows.get(position));
+                    CProgressDialogUtils.cancelProgressDialog();
+                    checkHasPay(videoRows.get(position));
+                }
+            }
+        });
     }
 
     @Override
@@ -99,7 +114,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 // startActivity(new Intent(MainActivity.this, QQActivity.class));
-                String url="mqqwpa://im/chat?chat_type=wpa&uin=3389923020";
+                String url = "mqqwpa://im/chat?chat_type=wpa&uin=3389923020";
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
             }
         });
@@ -120,21 +135,6 @@ public class MainActivity extends BaseActivity {
                /* Intent intent = new Intent(MainActivity.this, WebActivity.class);
                 intent.putExtra(WebActivity.URL, Config.url);
                 startActivity(intent);*/
-            }
-        });
-        moviesAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener()
-
-        {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                if (testPlay) {
-                    play(videoRows.get(position));
-                } else {
-                    CProgressDialogUtils.showProgressDialog(MainActivity.this, "正在校验视频文件");
-                    getSHA256(videoRows.get(position));
-                    CProgressDialogUtils.cancelProgressDialog();
-                    checkHasPay(videoRows.get(position));
-                }
             }
         });
         et_search.addTextChangedListener(new TextWatcher() {
@@ -443,6 +443,7 @@ public class MainActivity extends BaseActivity {
 
                 }
             });
+            builder.create().show();
             return;
         }
         if (TextUtil.isValidate(moviesBean.getPlayPath())) {
