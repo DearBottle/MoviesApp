@@ -57,7 +57,7 @@ public class MainActivity extends BaseActivity {
     private ArrayList<MoviesBean> videoRowsAll;
     private ArrayList<MoviesBean> videoRows;
     private EditText et_search;
-    private boolean testPlay = true;
+    private boolean testPlay = false;
     private ImageView ivRefresh;
 
 

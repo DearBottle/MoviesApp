@@ -28,6 +28,7 @@ public class BaseApplication extends MultiDexApplication {
         context = this;
     }
 
+
     public static void addActivity(BaseActivity activity) {
         mActivitySet.add(activity);
     }

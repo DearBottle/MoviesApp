@@ -8,6 +8,7 @@ import com.bottle.moviesapp.net.Config;
 
 public class BaseRequset {
     private Long TimeStamp = System.currentTimeMillis();
-    private int ApiVersion = 1;
+    private int ApiVersion = Config.getApiVersion();
     private String Token = Config.getUserToken();
+    private String IMEI = Config.getIMEI();
 }

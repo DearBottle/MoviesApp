@@ -1,6 +1,8 @@
 package com.bottle.moviesapp.net;
 
 
+import com.bottle.moviesapp.bean.AdvertAddBean;
+import com.bottle.moviesapp.bean.AdvertBean;
 import com.bottle.moviesapp.bean.ApplyPermissionBean;
 import com.bottle.moviesapp.bean.BaseRequset;
 import com.bottle.moviesapp.bean.PayBean;
@@ -9,6 +11,8 @@ import com.bottle.moviesapp.bean.RequestUserToken;
 import com.bottle.moviesapp.bean.RequsetPermission;
 import com.bottle.moviesapp.bean.UserBean;
 import com.bottle.moviesapp.bean.UserTokenBean;
+
+import java.util.List;
 
 import io.reactivex.Flowable;
 import retrofit2.http.Body;
@@ -40,6 +44,11 @@ public interface AppApi {
     @POST("permission/apply")
     Flowable<DxResponse<ApplyPermissionBean>> applyPermission(@Body RequsetPermission requsetPermission);
 
+    @POST("advert/get")
+    Flowable<DxResponse<List<AdvertBean>>> getAdvert(@Body BaseRequset requset);
+
+    @POST("advert/add")
+    Flowable<DxResponse> addAdvert(@Body AdvertAddBean requset);
 
   /*  //修改密码
     @PUT("dxbase/rbac/user/changePassword")
