@@ -411,7 +411,8 @@ public class MainActivity extends BaseActivity {
                             ToastUtil.showToast(MainActivity.this, "授权失败");
                             return;
                         }
-                        play(moviesBean);
+                        ToastUtil.showToast(MainActivity.this,"申请授权成功,请联系客服确认");
+                       // play(moviesBean);
                     }
 
                     @Override

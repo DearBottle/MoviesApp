@@ -16,6 +16,7 @@ import com.bottle.moviesapp.bean.BaseRequset;
 import com.bottle.moviesapp.net.AppApiManager;
 import com.bottle.moviesapp.net.DxResponse;
 import com.bottle.moviesapp.net.Request;
+import com.bottle.moviesapp.utils.PreferenceUtil;
 import com.bottle.moviesapp.utils.TextUtil;
 import com.bumptech.glide.Glide;
 
@@ -44,6 +45,7 @@ public class WelcomeActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        showAdvert(0, null, null);
         getAdvert();
 
         mTimer = new CountDownTimer(5000, 1000) {
@@ -91,15 +93,9 @@ public class WelcomeActivity extends BaseActivity {
                         if (permissionBeanDxResponse == null || !TextUtil.isValidate(permissionBeanDxResponse.getData())) {
                             return;
                         }
-                        Glide.with(WelcomeActivity.this)
-                                .load(permissionBeanDxResponse.getData().get(0).getImgUrl())
-                                .into(ivHorn);
-                        ivHorn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                jumpAdvert(permissionBeanDxResponse.getData().get(0));
-                            }
-                        });
+                        showAdvert(permissionBeanDxResponse.getData().get(0).getId(),
+                                permissionBeanDxResponse.getData().get(0).getImgUrl(),
+                                permissionBeanDxResponse.getData().get(0).getUrl());
                     }
 
                     @Override
@@ -115,14 +111,40 @@ public class WelcomeActivity extends BaseActivity {
         );
     }
 
-    private void jumpAdvert(AdvertBean data) {
-        Uri uri = Uri.parse(data.getUrl());
+    private void showAdvert(int id, String ImgUrl, String url) {
+        if (TextUtil.isValidate(ImgUrl) && TextUtil.isValidate(url)) {
+            PreferenceUtil.putString("ImgUrl", ImgUrl);
+            PreferenceUtil.putInt("Id", id);
+            PreferenceUtil.putString("Url", url);
+
+        } else {
+            id = PreferenceUtil.getInt("Id", 0);
+            ImgUrl = PreferenceUtil.getString("ImgUrl", "");
+            url = PreferenceUtil.getString("Url", "");
+        }
+
+        Glide.with(WelcomeActivity.this)
+                .load(ImgUrl)
+                .into(ivHorn);
+
+        final String finalUrl = url;
+        final int finalId = id;
+        ivHorn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                jumpAdvert(finalId, finalUrl);
+            }
+        });
+    }
+
+    private void jumpAdvert(int id, String url) {
+        Uri uri = Uri.parse(url);
         Intent intent = new Intent();
         intent.setAction("android.intent.action.VIEW");
         intent.setData(uri);
         startActivity(intent);
         Request.getInstant().doRequest(AppApiManager.getInstance().getApi()
-                        .addAdvert(new AdvertAddBean(data.getId()))
+                        .addAdvert(new AdvertAddBean(id))
                         .subscribeOn(Schedulers.io()),
                 new ResourceSubscriber<DxResponse>() {
                     @Override
