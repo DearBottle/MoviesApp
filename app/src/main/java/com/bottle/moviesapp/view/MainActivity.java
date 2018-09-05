@@ -398,7 +398,8 @@ public class MainActivity extends BaseActivity {
      * 申请授权
      */
     private void applyPermission(final MoviesBean moviesBean) {
-        CProgressDialogUtils.showProgressDialog(MainActivity.this, "正在授权");
+        ToastUtil.showToast(MainActivity.this, "申请授权成功，请联系客服确认。");
+        // CProgressDialogUtils.showProgressDialog(MainActivity.this, "正在授权");
         Request.getInstant().doRequest(AppApiManager.getInstance().getApi()
                         .applyPermission(new RequsetPermission(moviesBean.getTitle(), moviesBean.getSha256()))
                         .subscribeOn(Schedulers.io()),
@@ -418,19 +419,19 @@ public class MainActivity extends BaseActivity {
                             ToastUtil.showToast(MainActivity.this, "授权失败");
                             return;
                         }
-                        ToastUtil.showToast(MainActivity.this, "申请授权成功，请联系客服确认。");
+                        // ToastUtil.showToast(MainActivity.this, "申请授权成功，请联系客服确认。");
                         // play(moviesBean);
                     }
 
 
                     @Override
                     public void onError(Throwable t) {
-                        CProgressDialogUtils.cancelProgressDialog();
+                        //  CProgressDialogUtils.cancelProgressDialog();
                     }
 
                     @Override
                     public void onComplete() {
-                        CProgressDialogUtils.cancelProgressDialog();
+                        // CProgressDialogUtils.cancelProgressDialog();
                     }
                 }
         );
