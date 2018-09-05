@@ -116,13 +116,14 @@ public class WelcomeActivity extends BaseActivity {
             PreferenceUtil.putString("ImgUrl", ImgUrl);
             PreferenceUtil.putInt("Id", id);
             PreferenceUtil.putString("Url", url);
-
         } else {
             id = PreferenceUtil.getInt("Id", 0);
             ImgUrl = PreferenceUtil.getString("ImgUrl", "");
             url = PreferenceUtil.getString("Url", "");
         }
-
+        if (id == 0) {
+            return;
+        }
         Glide.with(WelcomeActivity.this)
                 .load(ImgUrl)
                 .into(ivHorn);

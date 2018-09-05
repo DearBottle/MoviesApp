@@ -56,6 +56,7 @@ public class ViedoActivity extends GSYBaseActivityDetail<GSYExo2PlayerView> {
         detailPlayer.setShowFullAnimation(false);
         detailPlayer.setNeedLockFull(true);
         detailPlayer.setVideoAllCallBack(this);
+        detailPlayer.getFullscreenButton().setVisibility(View.GONE);
         //全屏
         showFull();
         clickForFullScreen();

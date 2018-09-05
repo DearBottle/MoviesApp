@@ -305,8 +305,13 @@ public class MainActivity extends BaseActivity {
                             return;
                         }
                         if (!permissionBeanDxResponse.getData().isPay()) {
-                            Intent intent = new Intent(MainActivity.this, WebActivity.class);
+                            /*Intent intent = new Intent(MainActivity.this, WebActivity.class);
                             intent.putExtra(WebActivity.URL, Config.videoDetail + permissionBeanDxResponse.getData().getId());
+                            startActivity(intent);*/
+                            Uri uri = Uri.parse(Config.videoDetail + permissionBeanDxResponse.getData().getId());
+                            Intent intent = new Intent();
+                            intent.setAction("android.intent.action.VIEW");
+                            intent.setData(uri);
                             startActivity(intent);
                             return;
                         }
@@ -382,6 +387,8 @@ public class MainActivity extends BaseActivity {
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+
+                ToastUtil.showToast(MainActivity.this, "申请被拒绝，详情咨询客服。");
             }
         });
         builder.create().show();
@@ -411,9 +418,10 @@ public class MainActivity extends BaseActivity {
                             ToastUtil.showToast(MainActivity.this, "授权失败");
                             return;
                         }
-                        ToastUtil.showToast(MainActivity.this,"申请授权成功,请联系客服确认");
-                       // play(moviesBean);
+                        ToastUtil.showToast(MainActivity.this, "申请授权成功，请联系客服确认。");
+                        // play(moviesBean);
                     }
+
 
                     @Override
                     public void onError(Throwable t) {

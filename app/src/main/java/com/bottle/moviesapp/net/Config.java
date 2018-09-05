@@ -4,6 +4,7 @@ import android.telephony.TelephonyManager;
 
 import com.bottle.moviesapp.base.BaseApplication;
 import com.bottle.moviesapp.bean.UserBean;
+import com.bottle.moviesapp.utils.PreferenceUtil;
 import com.bottle.moviesapp.utils.TextUtil;
 
 /**
@@ -31,6 +32,7 @@ public class Config {
 
     public static void setUserToken(String userToken) {
         Config.userToken = userToken;
+        PreferenceUtil.putString("UserToken", userToken);
     }
 
     public static void saveLoginUser(String loginName, String pwd) {
@@ -38,6 +40,9 @@ public class Config {
     }
 
     public static String getUserToken() {
+        if (!TextUtil.isValidate(userToken)) {
+            userToken = PreferenceUtil.getString("UserToken", "");
+        }
         return userToken;
     }
 
